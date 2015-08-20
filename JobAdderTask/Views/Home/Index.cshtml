@@ -1,0 +1,139 @@
+﻿
+<h1>Coding Task</h1>
+<hr />
+
+<div ng-controller="IndexController">
+
+    <div ng-repeat="job in jobs" ng-cloak>
+        <h2>{{job.title}} <span ng-if="job.isNew" class="new">NEW</span></h2>
+        <span class="text-muted">
+            Posted {{job.datePosted | fromNow}}  |
+            {{job.location}} {{job.country}}
+        </span>
+
+        <p ng-bind-html="job.description | rawHtml | limitTo: 200"></p>
+
+        <a class="text-success" href="" ng-click="showJobDetails(job)"><b>READ MORE</b></a>
+    </div>
+
+    <pagination total-items="total" items-per-page="filters.show" ng-model="filters.page" ng-change="pageChanged()" ng-show="total > filters.show"></pagination>
+
+
+    <script type="text/ng-template" id="jobDetails.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Job Details</h3>
+        </div>
+        <div class="modal-body">
+            <h2>{{job.title}} <span ng-if="job.isNew" class="new">NEW</span></h2>
+            <span class="text-muted">
+                Posted {{job.datePosted | fromNow}}  |
+                {{job.location}} {{job.country}}
+            </span>
+
+            <p ng-bind-html="job.description | rawHtml | limitTo: 200"></p>
+        </div>
+        <div class="modal-footer">
+            @*<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>*@
+            <button class="btn btn-default" type="button" ng-click="close()">Close</button>
+        </div>
+    </script>
+</div>
+
+
+
+@section scripts{
+    <script>
+        ( function () {
+            'use strict';
+
+            angular
+                .module( 'JobAdder' )
+                .controller( 'IndexController', IndexController );
+
+            IndexController.$inject = ['$http', '$scope', '$modal'];
+
+            function IndexController( $http, $scope, $modal ) {
+
+                $scope.filters = { page: 1, show: 10 };
+
+                $scope.pageChanged = function () {
+                    $http.get( '/api/jobs?page=' + $scope.filters.page + '&show=' + $scope.filters.show ).then( function ( res ) {
+                        $scope.jobs = res.data.items;
+                        $scope.total = res.data.total;
+                    } )
+                }
+                $scope.pageChanged();
+
+
+
+                //Get Single - Job details
+                $scope.showJobDetails = function ( job ) {
+
+                    var modalInstance = $modal.open( {
+                        templateUrl: 'jobDetails.html',
+                        controller: 'ModalInstanceCtrl',
+                        //size: size,  //animation: true,
+                        resolve: {
+                            job: function () {
+                                return job; //$scope.job;
+                            }
+                        }
+                    } );
+                }
+            }
+
+            angular
+                .module( 'JobAdder' )
+                .controller( 'ModalInstanceCtrl', function ( $scope, $modalInstance, job ) {
+
+                    $scope.job = job;
+
+                    $scope.close = function () {
+                        $modalInstance.dismiss( 'cancel' );
+                    };
+                } );
+
+
+            //Filters
+            var app = angular.module( 'JobAdder' );
+
+            app.filter( 'rawHtml', ['$sce', function ( $sce ) {
+                return function ( val ) {
+                    return $sce.trustAsHtml( val );
+                };
+            }] );
+
+        } )();
+
+
+
+
+
+        //$scope.items = items;
+        //$scope.selected = {
+        //    item: $scope.items[0]
+        //};
+
+        //$scope.ok = function () {
+        //    $modalInstance.close(); //$scope.selected.item
+        //};
+    </script>
+}
+
+
+
+@*
+       //$scope.showNew = function ( datePosted ) {
+                //    return new Date( datePosted ).getDate() == Date.now();
+                //}
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>*@
