@@ -1,12 +1,10 @@
 ﻿using JobAdderTask.Models;
 using JobAdderTask.Services;
-using System;
+using PagedList;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using PagedList;
+using System.Web.Http.Description;
 
 namespace JobAdderTask.Controllers
 {
@@ -16,15 +14,17 @@ namespace JobAdderTask.Controllers
         private JobService _service = new JobService();
 
         //Get all jobs from job service 
+        [ResponseType( typeof( IEnumerable<JobDto> ) )]
         public object GetJobs ( int page = 1, int show = 10 )
         {
             var jobs = _service.ReadFile().ToPagedList( page, show );
 
-            return new {
+            return new JobsPagedList {
                 items = jobs.Select( job => new JobDto( job ) ),
                 total = jobs.TotalItemCount
             };
         }
 
+      
     }
 }

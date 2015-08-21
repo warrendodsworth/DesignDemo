@@ -17,9 +17,11 @@ namespace JobAdderTask
 
                 //Js
                 "~/js/app.js",
-                
-                "~/js/shared/directives/fromNow.js"
-                
+
+                "~/js/shared/filters/fromNow.js",
+                "~/js/shared/filters/rawHtml.js",
+                "~/js/shared/filters/snippets.js"
+
                 ) );
 
 
@@ -37,6 +39,7 @@ namespace JobAdderTask
 
             bundles.Add( new StyleBundle( "~/Content/css" ).Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/ui-bootstrap-csp.css",
                       "~/Content/site.css" ) );
         }

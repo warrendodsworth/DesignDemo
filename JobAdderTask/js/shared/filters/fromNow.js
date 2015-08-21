@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module( 'directives' )
+        .module( 'filters' )
         .filter( 'fromNow', function () {
                return function ( date ) {
 

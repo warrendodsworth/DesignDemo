@@ -6,11 +6,10 @@
     'use strict';
 
     //Directives module
-    angular.module( 'directives', [] );
+    angular.module( 'filters', [] );
 
 
     //Main module
-    angular.module( 'JobAdder', ['ui.bootstrap', 'directives'] );
-
+    angular.module( 'JobAdder', ['ui.bootstrap', 'filters'] );
 
 } )();
