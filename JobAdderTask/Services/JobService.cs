@@ -17,7 +17,17 @@ namespace JobAdderTask.Services
             doc = XDocument.Load( Path );
         }
 
-        public IQueryable<Job> ReadFile ()
+        public IQueryable<Job> GetJobs ( string Search )
+        {
+            var query = ReadFile().AsQueryable();
+
+            foreach ( var term in SplitQuery( Search ) )
+                query = query.Where( job => job.SearchTitle != null ? job.SearchTitle.ToLowerInvariant().Contains( term ) : false  );
+
+            return query;
+        }
+
+        public IEnumerable<Job> ReadFile ()
         {
             var jobElements = doc.Root.Elements();
             List<Job> jobs = new List<Job>();
@@ -58,7 +68,13 @@ namespace JobAdderTask.Services
                 jobs.Add( job );
             }
 
-            return jobs.AsQueryable();
+            return jobs;
+        }
+
+
+        public static IList<string> SplitQuery ( string query )
+        {
+            return !string.IsNullOrWhiteSpace( query ) ? query.Split( new string[] { " ", "-", "|" }, StringSplitOptions.RemoveEmptyEntries ).ToList() : new List<string>();
         }
     }
 }
@@ -82,106 +98,3 @@ namespace JobAdderTask.Services
 //</Job>
 
 
-
-
-
-//Debug.WriteLine( classificationElement.ToString() );
-//private XmlTextReader TextReader;
-//doc.Load( "/App_Data/SampleJobs.xml" );
-//XmlElement name = doc.CreateElement( "name" );
-//TextReader = new XmlTextReader( Path );
-
-
-
-//Attribute, CDATA, Element, Comment, Document, DocumentType, Entity, ProcessInstruction, WhiteSpace
-//Debug.WriteLine( "Node Type:" + TextReader.NodeType.ToString() );
-//public IQueryable<Job> ReadFile ()
-//{
-//    //Thread.Sleep( 3000 );
-//    int i = 0;
-
-//    while ( TextReader.Read() && i < 20 ) {
-
-//        i++;
-
-//        // Move to fist element
-//        TextReader.MoveToElement();
-//        var nType = TextReader.NodeType;
-//        var job = new Job();
-
-//        // if node type is an element
-//        if ( nType == XmlNodeType.Element ) {
-
-//            if ( TextReader.Name == "Job" ) {
-//                Debug.WriteLine( TextReader.GetAttribute( "jid" ) );
-
-//                job.Jid = Convert.ToInt32( TextReader.GetAttribute( "jid" ) );
-//                job.Refrence = TextReader.GetAttribute( "reference" );
-//                job.DatePosted = DateTime.Parse( TextReader.GetAttribute( "datePosted" ) );
-//                job.DateUpdated = DateTime.Parse( TextReader.GetAttribute( "dateUpdated" ) );
-//            }
-//            if ( TextReader.Name == "Title" ) {
-//                job.Title = TextReader.Value;
-//            }
-//            if ( TextReader.Name == "Description" ) {
-//                job.Description = TextReader.Value;
-//            }
-
-//            Debug.WriteLine( "Element:" + TextReader.Value );
-
-//        }
-
-//        // if node type is a comment
-//        if ( nType == XmlNodeType.CDATA ) {
-//            Debug.WriteLine( "CDATA:" + TextReader.Name.ToString() );
-//        }
-
-//        Jobs.Add( job );
-//    }
-
-//    return Jobs.AsQueryable();
-//}
-
-
-//var jobs = Doc.GetEnumerator();
-//Console.WriteLine( "Display all the books..." );
-//XmlNode root = Doc.DocumentElement;
-//IEnumerator ienum = root.GetEnumerator();
-//XmlNode job;
-//while ( ienum.MoveNext() ) {
-//    job = (XmlNode) ienum.Current;
-//    Debug.WriteLine( job.OuterXml );
-//    //Console.WriteLine();
-//}
-
-
-//// if node type a document
-//if ( nType == XmlNodeType.DocumentType ) {
-//    Debug.WriteLine( "Document:" + TextReader.Name.ToString() );
-//}
-
-//// if node type us an attribute
-//if ( nType == XmlNodeType.Attribute ) {
-//    Debug.WriteLine( "Attribute:" + TextReader.Name.ToString() );
-//}
-
-//// If node type us a declaration
-//if ( nType == XmlNodeType.XmlDeclaration ) {
-//    Debug.WriteLine( "Declaration:" + TextReader.Name.ToString() );
-//}
-//// if node type is a comment
-//if ( nType == XmlNodeType.Comment ) {
-//    Debug.WriteLine( "Comment:" + TextReader.Name.ToString() );
-//}
-//// if node type is an entity\
-//if ( nType == XmlNodeType.Entity ) {
-//    Debug.WriteLine( "Entity:" + TextReader.Name.ToString() );
-//}
-//// if node type is a Process Instruction
-//if ( nType == XmlNodeType.Entity ) {
-//    Debug.WriteLine( "Entity:" + TextReader.Name.ToString() );
-//}
-//// if node type is white space
-//if ( nType == XmlNodeType.Whitespace ) {
-//    Debug.WriteLine( "WhiteSpace:" + TextReader.Name.ToString() );
-//}

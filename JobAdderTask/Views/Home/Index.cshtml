@@ -4,6 +4,19 @@
 
 <div ng-controller="IndexController">
 
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <form name="form" ng-submit="form.$valid && search()" ng-keypress="$event.keyCode == 13 && form.$valid && search()" novalidate>
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-full" name="searchText" ng-model="filters.search" placeholder="Search Jobs">
+                    <span class="input-group-btn">
+                        <button type="submit" name="submitSearch" class="btn btn-primary"><i class="fa fa-fw fa-search h-m"></i></button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!--List of Jobs-->
     <div ng-repeat="job in jobs" class="clear-br" ng-cloak>
         <h3>

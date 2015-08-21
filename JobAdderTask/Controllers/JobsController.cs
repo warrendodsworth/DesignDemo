@@ -15,9 +15,9 @@ namespace JobAdderTask.Controllers
 
         //Get all jobs from job service 
         [ResponseType( typeof( IEnumerable<JobDto> ) )]
-        public object GetJobs ( int page = 1, int show = 10 )
+        public object GetJobs ( string search, int page = 1, int show = 10 )
         {
-            var jobs = _service.ReadFile().ToPagedList( page, show );
+            var jobs = _service.GetJobs( search ).ToPagedList( page, show );
 
             return new JobsPagedList {
                 items = jobs.Select( job => new JobDto( job ) ),
@@ -25,6 +25,6 @@ namespace JobAdderTask.Controllers
             };
         }
 
-      
+
     }
 }

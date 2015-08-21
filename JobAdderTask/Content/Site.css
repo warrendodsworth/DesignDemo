@@ -20,5 +20,9 @@ a.text-title { text-decoration: none; }
 
 .clear-br br { display: none; }
 
+.form-control-full { max-width: 100% !important; }
+
+.h-m { margin-left: 10px; margin-right: 10px; }
+
 /*Angular helpers*/
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak { display: none !important; }
