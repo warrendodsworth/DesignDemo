@@ -12,3 +12,7 @@ It should display
 3. When it was posted
 4. Location
 5. Job Summary
+
+**NOTE** - The page should show 10 job listings each page with page navigators to iterate through the pages.
+
+**DETAILS** - If you click on the Title and Read More to display a popup with the full job description.
