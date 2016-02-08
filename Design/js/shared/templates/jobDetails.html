@@ -1,0 +1,22 @@
+﻿
+<!-- Modal template for Job -->
+
+<div class="modal-header">
+    <button class="close" type="button" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title"><span class="text-title">{{job.title}}</span> <span ng-if="job.isNew" class="text-new">NEW</span></h3>
+    <p class="text-muted2">
+        <i class="fa fa-fw fa-clock-o text-muted"></i> {{job.workType}} &nbsp;|&nbsp;
+        <i class="fa fa-fw fa-sliders fa-rotate-90 text-muted"></i> {{job.subCategory}} {{job.category}}
+    </p>
+
+    <span class="text-muted2"><i class="fa fa-fw fa-map-marker"></i> <b>{{job.area}}</b>, {{job.location}} {{job.country}} </span>
+</div>
+<div class="modal-body">
+    <p ng-bind-html="job.description | rawHtml | limitTo: 200"></p>
+    <br />
+
+    <span class="text-muted">Posted {{job.datePosted | fromNow}} | Last Updated {{job.dateUpdated | date}}</span>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="close()">Close</button>
+</div>

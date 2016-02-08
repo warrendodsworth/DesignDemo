@@ -1,0 +1,28 @@
+﻿body { padding-top: 50px; padding-bottom: 20px; }
+
+/* Set padding to keep content from hitting the edges */
+.body-content { padding-left: 15px; padding-right: 15px; }
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea { max-width: 280px; }
+
+
+.text-new { color: #f57bae; }
+
+.text-title { color: #1dafd3 !important; }
+a.text-title { text-decoration: none; }
+
+.text-more { color: #a6be45 !important; }
+
+.text-muted2 { color: #666; }
+
+.clear-br br { display: none; }
+
+.form-control-full { max-width: 100% !important; }
+
+.h-m { margin-left: 10px; margin-right: 10px; }
+
+/*Angular helpers*/
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak { display: none !important; }
