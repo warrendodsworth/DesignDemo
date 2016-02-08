@@ -1,12 +1,12 @@
-﻿using JobAdderTask.Models;
-using JobAdderTask.Services;
+﻿using Web.Models;
+using Web.Services;
 using PagedList;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Description;
 
-namespace JobAdderTask.Controllers
+namespace Web.Controllers
 {
     // api/jobs
     public class JobsController : ApiController

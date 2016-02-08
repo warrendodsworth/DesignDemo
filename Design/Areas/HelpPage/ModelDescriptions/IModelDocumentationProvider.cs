@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace JobAdderTask.Areas.HelpPage.ModelDescriptions
+namespace Web.Areas.HelpPage.ModelDescriptions
 {
     public interface IModelDocumentationProvider
     {

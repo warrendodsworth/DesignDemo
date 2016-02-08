@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using JobAdderTask.Areas.HelpPage.ModelDescriptions;
-using JobAdderTask.Areas.HelpPage.Models;
+using Web.Areas.HelpPage.ModelDescriptions;
+using Web.Areas.HelpPage.Models;
 
-namespace JobAdderTask.Areas.HelpPage
+namespace Web.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

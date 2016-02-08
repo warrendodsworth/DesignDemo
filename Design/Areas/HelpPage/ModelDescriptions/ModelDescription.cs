@@ -1,6 +1,6 @@
 using System;
 
-namespace JobAdderTask.Areas.HelpPage.ModelDescriptions
+namespace Web.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.

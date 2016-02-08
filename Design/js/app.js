@@ -2,14 +2,17 @@
  * Angular Module Config
  */
 
-( function () {
-    'use strict';
+(function () {
+  'use strict';
 
-    //Directives module
-    angular.module( 'filters', [] );
+  //Main module
+  angular.module('design', ['ui.bootstrap', 'filters']);
 
 
-    //Main module
-    angular.module( 'JobAdder', ['ui.bootstrap', 'filters'] );
+  //Directives module
+  angular.module('filters', []);
 
-} )();
+  //Controllers module
+  angular.module('controllers', []);
+
+})();

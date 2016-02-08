@@ -6,7 +6,7 @@
     'use strict';
 
     angular
-        .module( 'JobAdder' )
+        .module( 'controllers' )
         .controller( 'IndexController', IndexController );
 
     IndexController.$inject = ['$location', '$anchorScroll', '$http', '$scope', '$modal'];
@@ -63,7 +63,7 @@
 
     //Modal controller
     angular
-        .module( 'JobAdder' )
+        .module( 'controllers' )
         .controller( 'ModalInstanceCtrl', function ( $scope, $modalInstance, job ) {
 
             $scope.job = job;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JobAdderTask.Models
+namespace Web.Models
 {
     //Flat object for REST API Transfer
     public class JobDto
