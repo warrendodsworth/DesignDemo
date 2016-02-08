@@ -6,7 +6,7 @@
   'use strict';
 
   //Main module
-  angular.module('design', ['ui.bootstrap', 'filters']);
+  angular.module('design', ['ui.bootstrap', 'controllers', 'filters']);
 
 
   //Directives module
